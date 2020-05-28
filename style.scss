@@ -28,16 +28,21 @@ $width-button: 150px; //Button width
 }
 
 
-
+//Function in sass
+@function divide($a, $b) {
+    @return $a / $b;
+}
 
 
 nav {
-    margin: 30px;
+    margin: divide(60, 2) * 1px; //Here i used above function to make 30px margin of navigation
     background-color: $color-primary;
 
     @include clearfix;
 }
 
+
+//Nested code in sass
 .navigation {
     list-style: none;
     float: left;
@@ -60,8 +65,8 @@ nav {
     float: right;
 }
 
-.btn-main:link,
-.btn-hot:link {
+//extend in sass
+%btn-placeholder {
     padding: 10px;
     display: inline-block;
     border-radius: 100px;
@@ -70,8 +75,10 @@ nav {
     @include style-link-text($color-text-light);
 }
 
+
 .btn-main {
     &:link {
+        @extend %btn-placeholder;
         background-color: $color-secondary;
     }
 
@@ -82,6 +89,7 @@ nav {
 
 .btn-hot {
     &:link {
+        @extend %btn-placeholder;
         background-color: $color-tertiary;
     }
 
