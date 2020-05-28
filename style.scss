@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+// Variables in sass
 $color-primary: #f9ed69; //yellow color
 $color-secondary: #f08a5d; //Orange
 $color-tertiary: #b83b5e; //pink
@@ -11,15 +12,30 @@ $color-text-light: #eee;
 
 $width-button: 150px; //Button width
 
-nav {
-    margin: 30px;
-    background-color: $color-primary;
-
+//mixin in sass
+@mixin clearfix {
     &::after {
         content: "";
         clear: both;
         display: table;
     }
+}
+
+@mixin style-link-text($col) {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: ($col);
+}
+
+
+
+
+
+nav {
+    margin: 30px;
+    background-color: $color-primary;
+
+    @include clearfix;
 }
 
 .navigation {
@@ -35,9 +51,7 @@ nav {
         }
 
         a:link {
-            text-decoration: none;
-            text-transform: uppercase;
-            color: $color-text-dark;
+            @include style-link-text($color-text-dark);
         }
     }
 }
@@ -52,10 +66,8 @@ nav {
     display: inline-block;
     border-radius: 100px;
     text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
     width: $width-button;
-    color: $color-text-light;
+    @include style-link-text($color-text-light);
 }
 
 .btn-main {
